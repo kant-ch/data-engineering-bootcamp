@@ -95,6 +95,7 @@ poetry install
 | Remove empty directory | rmdir &lt;directory&gt; | `$ rmdir environment/` |
 | Remove nonempty directory | rm -rf &lt;directory&gt; | `$ rm -rf tmp/` |
 | Concatenate & display file contents | cat &lt;file&gt; | `$ cat ~/.ssh/id_rsa.pub` |
+| Shorten command line prompt | | `export PROMPT_DIRTRIM=1` |
 
 ### References
 
@@ -157,7 +158,7 @@ poetry install
     ### Step 1/2
 
     1. เลือก Country : Thailand
-    1. เลือก What the best descripes you organization or need : Other
+    1. เลือก What the best describes you organization or need : Other
     1. เลือก Term of Service
     1. คลิกปุ่ม CONTINUE
 
@@ -213,7 +214,7 @@ poetry install
 
 เสร็จแล้วกดปุ่ม DONE จะได้ service account
 
-ต่อไปเป็นการสร้าง credential ให้กับ service account ที่สร้างมา กดตรงชื่อของ servive account
+ต่อไปเป็นการสร้าง credential ให้กับ service account ที่สร้างมา กดตรงชื่อของ service account
 
 ![finish create service account](./docs/img/gcp-svc-service-account-page-after.png)
 
@@ -225,11 +226,11 @@ poetry install
 
 ![create credential for service account](./docs/img/gcp-svc-create-credential-add-key.png)
 
-เลือก key type เป็น json กด ปุ่ม CREATE
+เลือก key type เป็น JSON แล้วกดปุ่ม CREATE
 
 ![create credential for service account](./docs/img/gcp-svc-create-credential-add-key-json.png)
 
-browser จะโหลด credentail อัตโนมัติก็จะเสร็จเรียบร้อย
+ฺฺฺBrowser จะโหลด credential ให้อัตโนมัติก็จะเสร็จเรียบร้อย
 
 ## How to Use Google BigQuery
 
