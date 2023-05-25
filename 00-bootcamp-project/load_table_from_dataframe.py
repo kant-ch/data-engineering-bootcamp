@@ -20,16 +20,17 @@ client = bigquery.Client(
 
 job_config = bigquery.LoadJobConfig(
     write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
-    schema=[
-        bigquery.SchemaField("user_id", bigquery.SqlTypeNames.STRING),
-        bigquery.SchemaField("first_name", bigquery.SqlTypeNames.STRING),
-        bigquery.SchemaField("last_name", bigquery.SqlTypeNames.STRING),
-        bigquery.SchemaField("email", bigquery.SqlTypeNames.STRING),
-        bigquery.SchemaField("phone_number", bigquery.SqlTypeNames.STRING),
-        bigquery.SchemaField("created_at", bigquery.SqlTypeNames.TIMESTAMP),
-        bigquery.SchemaField("updated_at", bigquery.SqlTypeNames.TIMESTAMP),
-        bigquery.SchemaField("address_id", bigquery.SqlTypeNames.STRING),
-    ],
+    autodetect=True,
+    # schema=[
+    #     bigquery.SchemaField("user_id", bigquery.SqlTypeNames.STRING),
+    #     bigquery.SchemaField("first_name", bigquery.SqlTypeNames.STRING),
+    #     bigquery.SchemaField("last_name", bigquery.SqlTypeNames.STRING),
+    #     bigquery.SchemaField("email", bigquery.SqlTypeNames.STRING),
+    #     bigquery.SchemaField("phone_number", bigquery.SqlTypeNames.STRING),
+    #     bigquery.SchemaField("created_at", bigquery.SqlTypeNames.TIMESTAMP),
+    #     bigquery.SchemaField("updated_at", bigquery.SqlTypeNames.TIMESTAMP),
+    #     bigquery.SchemaField("address_id", bigquery.SqlTypeNames.STRING),
+    # ],
     time_partitioning=bigquery.TimePartitioning(
         type_=bigquery.TimePartitioningType.DAY,
         field="created_at",
@@ -37,11 +38,11 @@ job_config = bigquery.LoadJobConfig(
     clustering_fields=["first_name", "last_name"],
 )
 
-file_path = "users.csv"
+file_path = "./data/users.csv"
 df = pd.read_csv(file_path, parse_dates=["created_at", "updated_at"])
 df.info()
 
-table_id = f"{project_id}.deb_workshop.users"
+table_id = f"{project_id}.deb_bootcamp.users"
 job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
 job.result()
 
